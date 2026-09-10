@@ -21,6 +21,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - name: Start MySQL service
+      run: sudo systemctl start mysql
+    - name: Run database creation script from the repo
+      run: mysql -u root -proot < db/create-db.sql
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
